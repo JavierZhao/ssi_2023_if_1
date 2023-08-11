@@ -30,7 +30,7 @@ import h5py as h5
 from iftool.image_challenge import ParticleImage2D
 from iftool.image_challenge import collate
 from torch.utils.data import DataLoader
-from src.CNN_dropout import CNN_dropout
+from src.models.CNN_dropout import CNN_dropout
 
 project_dir = Path(__file__).resolve().parents[2]
 
