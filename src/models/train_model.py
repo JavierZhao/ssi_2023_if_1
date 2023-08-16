@@ -73,14 +73,14 @@ def main(args):
         train_data,
         collate_fn=collate,
         shuffle=True,
-        #                           num_workers = 4,
+#                                   num_workers = 2,
         batch_size=batch_size,
     )
     val_loader = DataLoader(
         val_data,
         collate_fn=collate,
         shuffle=True,
-        #                           num_workers = 4,
+#                                   num_workers = 2,
         batch_size=batch_size,
     )
     learning_rate = 0.001
