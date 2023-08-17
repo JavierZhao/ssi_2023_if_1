@@ -32,17 +32,17 @@ class GCN(torch.nn.Module):
         return x
 
 class GrCN(torch.nn.Module):
-    def __init__(self, hidden_channels):
+    def __init__(self, hidden_channels, input_channels=1):
         super(GrCN, self).__init__()
         torch.manual_seed(12345)
-        self.conv1 = GraphConv(1, hidden_channels)
+        self.conv1 = GraphConv(input_channels, hidden_channels)
         self.conv2 = GraphConv(hidden_channels, hidden_channels)
         self.conv3 = GraphConv(hidden_channels, hidden_channels)
         self.lin = Linear(hidden_channels, 4)
 
     def forward(self, x, edge_index, batch):
         # 1. Obtain node embeddings 
-        x = x.reshape(-1, 1)
+#         x = x.reshape(-1, 1)
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
@@ -59,18 +59,18 @@ class GrCN(torch.nn.Module):
         return x
 
 class GATCN(torch.nn.Module):
-    def __init__(self, hidden_channels):
+    def __init__(self, hidden_channels, input_channels=1):
         super(GATCN, self).__init__()
         torch.manual_seed(12345)
         self.hidden_channels = hidden_channels
-        self.conv1 = GATConv(1, hidden_channels, heads=1, concat=False)
+        self.conv1 = GATConv(input_channels, hidden_channels, heads=1, concat=False)
         self.conv2 = GATConv(hidden_channels, hidden_channels, heads=2, concat=False)
         self.conv3 = GATConv(hidden_channels, hidden_channels, heads=2, concat=False)
         self.lin = Linear(hidden_channels, 4)
 
     def forward(self, x, edge_index, batch):
         # 1. Obtain node embeddings 
-        x = x.reshape(-1, 1)
+#         x = x.reshape(-1, 1)
         x = self.conv1(x, edge_index)
         x = x.relu()
 #         x = self.conv2(x, edge_index).reshape(-1, self.hidden_channels*2)
@@ -88,10 +88,10 @@ class GATCN(torch.nn.Module):
         return x
     
 class GrCN_2(torch.nn.Module):
-    def __init__(self, hidden_channels):
+    def __init__(self, hidden_channels, input_channels=1):
         super(GrCN_2, self).__init__()
         torch.manual_seed(12345)
-        self.conv1 = GraphConv(1, int(hidden_channels / 2))
+        self.conv1 = GraphConv(input_channels, int(hidden_channels / 2))
         self.conv2 = GraphConv(int(hidden_channels / 2), hidden_channels)
         self.conv3 = GraphConv(hidden_channels, hidden_channels)
         self.conv4 = GraphConv(hidden_channels, hidden_channels)
@@ -99,7 +99,7 @@ class GrCN_2(torch.nn.Module):
 
     def forward(self, x, edge_index, batch):
         # 1. Obtain node embeddings 
-        x = x.reshape(-1, 1)
+#         x = x.reshape(-1, 1)
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
