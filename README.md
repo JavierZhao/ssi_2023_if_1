@@ -1,7 +1,9 @@
 SSI 2023 IF 1
 ==============================
 
-classification and segmentation of images. Four type of particles (electron, photon, muon, and proton) are simulated in liquid argon medium and the 2D projections of their 3D energy deposition patterns ("trajectories") are recorded. The challenge is to develop a classifier algorithm that identify which of four types is present in an image.
+classification and segmentation of images. Four types of particles (electron, photon, muon, and proton) are simulated in liquid argon medium and the 2D projections of their 3D energy deposition patterns ("trajectories") are recorded. The challenge is to develop a classifier algorithm that identifies which of four types is present in an image.  
+
+For model performances and trained models, please refer to https://ssl-jet-v2.nrp-nautilus.io/ssi_2023_if_1/models/
 
 Project Organization
 ------------
